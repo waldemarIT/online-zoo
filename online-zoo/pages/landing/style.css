@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #ffffff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    width: 100%; 
+}
+
+/* Header */
+.header {
+    background-color: #F58021;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-list {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+}
+
+.nav-link {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-link.active {
+    color: #00A092;
+}
+
+.nav-link:hover {
+    color: #00A092;
+}
+
+.socials {
+    display: flex;
+    gap: 15px;
+}
+
+.socials img {
+    width: 40px;
+    height: 40px;
+    transition: 0.3s;
+}
+
+.socials a:hover img {
+    opacity: 0.7;
+}
+
+.hero-section {
+    height: 810px;
+    background-image: 
+        linear-gradient(90deg, 
+            rgba(255, 255, 255, 0.9) 0%,    
+            rgba(255, 255, 255, 0.4) 30%,   
+            rgba(255, 255, 255, 0) 60%      
+        ), 
+        url('../../assets/images/background.png');
+    background-size: cover;
+    background-position: top center;
+    display: flex;
+    align-items: center;
+}
+
+.hero-container {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 0; 
+}
+
+.hero-content {
+    max-width: 585px;
+}
+
+.hero-title {
+    font-size: 64px;
+    line-height: 1.1;
+    color: #00A092; 
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.hero-title .highlight {
+    color: #00A092; 
+}
+
+.hero-text {
+    color: #333B41;
+    font-size: 18px;
+    margin-bottom: 40px;
+    line-height: 1.4;
+}
+
+.view-btn {
+    background-color: #F58021;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.view-btn:hover {
+    background-color: #E47209;
+}
+
+.btn-icon {
+    width: 15px;
+}
+
+
+
+
+
+
+
+/* --- Загальні стилі для секцій --- */
+.section-title {
+    font-size: 48px;
+    color: #00A092;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.section-text {
+    font-size: 16px;
+    line-height: 1.4;
+    color: #333B41;
+}
+
+/* --- Welcome & How We Work Layout --- */
+.welcome-section, .how-work-section {
+    padding: 80px 0;
+}
+
+/* Welcome: текст зліва, фото максимально праворуч */
+.welcome-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
+/* How We Work: фото зліва, текст відсунутий вправо */
+.how-work-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 100px;
+}
+
+.welcome-content, .how-work-content {
+    flex: 1;
+}
+
+/* Стилі для зображень з точними розмірами */
+.welcome-image img, .how-work-image img {
+    width: 531px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* --- Donation Banner --- */
+.donation-banner {
+    background-color: #20113D;
+    padding: 35px 0;
+    color: white;
+}
+
+.donation-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.donation-info {
+    max-width: 750px;
+}
+
+.donation-title {
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.donation-text {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* Контейнер для кнопки та напису над нею */
+.donation-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.quick-donate-label {
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+/* --- Кнопка донату (Дизайн за скріншотом) --- */
+.donate-btn {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 0; /* Прибираємо внутрішні падінги, щоб вставити блок стрілки впритул */
+    height: 44px; /* Висота як на макеті */
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    overflow: hidden; /* Щоб помаранчевий блок не вилазив за закруглення */
+    text-transform: uppercase;
+}
+
+.btn-text {
+    padding: 0 25px; /* Відступи для тексту всередині */
+}
+
+/* Помаранчева частина кнопки */
+.arrow-circle {
+    background-color: #F58021;
+    width: 44px; /* Робимо квадрат */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.arrow-circle img {
+    width: 14px;
+}
+
+/* Ховер ефекти */
+.donate-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.donate-btn:hover .arrow-circle {
+    background-color: #E47209;
+}
