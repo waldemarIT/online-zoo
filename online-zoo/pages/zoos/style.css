@@ -80,6 +80,10 @@ body {
     transition: width 0.3s ease;
     flex-shrink: 0;
     align-self: flex-start;
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    overflow-y: auto;
 }
 
 .side-top {
@@ -528,4 +532,556 @@ body {
     width: 24px;
     height: 24px;
     display: block;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.donate-modal {
+    background: #fff;
+    border-radius: 6px;
+    max-width: 540px;
+    width: 92%;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 20;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+.modal-hero-img {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+}
+
+.modal-hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-hero-body {
+    padding: 28px 36px 32px;
+    text-align: center;
+}
+
+.modal-hero-body h2 {
+    color: #F58021;
+    font-size: 28px;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.25;
+    margin-bottom: 14px;
+}
+
+.modal-hero-body p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto 22px;
+}
+
+.amount-grid-hero {
+    justify-content: center;
+}
+
+.modal-header-bar {
+    background: #F58021;
+    color: #fff;
+    text-align: center;
+    padding: 22px 48px;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.modal-step {
+    display: none;
+}
+
+.modal-step.active {
+    display: block;
+}
+
+.modal-section-title {
+    padding: 18px 28px 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.modal-divider {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 0 28px 18px;
+}
+
+.modal-content-pad {
+    padding: 0 28px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.field-req {
+    font-size: 13px;
+    color: #555;
+}
+
+.amount-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.amount-btn {
+    background: #00A092;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 4px;
+    min-width: 72px;
+    transition: background 0.2s;
+}
+
+.amount-btn:hover,
+.amount-btn.selected {
+    background: #008a7d;
+}
+
+.other-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.other-amount-btn {
+    background: #00A092;
+    color: #fff;
+    border: none;
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.other-amount-btn:hover { background: #008a7d; }
+
+.other-input {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 11px 14px;
+    font-size: 14px;
+    outline: none;
+}
+
+.other-input:focus { border-color: #00A092; }
+
+.pet-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.for-pet-btn {
+    background: #00A092;
+    color: #fff;
+    border: none;
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.for-pet-btn:hover { background: #008a7d; }
+
+.pet-select {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 11px 14px;
+    font-size: 13px;
+    outline: none;
+    background: #fff;
+    cursor: pointer;
+}
+
+.monthly-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #555;
+    cursor: pointer;
+}
+
+.monthly-row input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #00A092;
+}
+
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 28px 22px;
+}
+
+.step-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ccc;
+    transition: background 0.2s;
+}
+
+.dot.active { background: #00A092; }
+
+.btn-next-step,
+.btn-complete {
+    background: #00A092;
+    color: #fff;
+    border: none;
+    padding: 13px 28px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.btn-next-step:hover,
+.btn-complete:hover { background: #008a7d; }
+
+.btn-complete {
+    background: #F58021;
+}
+
+.btn-complete:hover { background: #d96e10; }
+
+.nav-btns {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.btn-back-step {
+    background: transparent;
+    border: none;
+    color: #00A092;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 11px 14px;
+    font-size: 14px;
+    outline: none;
+    font-family: sans-serif;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus { border-color: #00A092; }
+
+.info-note {
+    font-size: 12px;
+    color: #888;
+    line-height: 1.5;
+}
+
+.payment-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.expiry-row {
+    display: flex;
+    gap: 14px;
+}
+
+.expiry-select {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 11px 14px;
+    font-size: 13px;
+    outline: none;
+    background: #fff;
+    cursor: pointer;
+    appearance: auto;
+}
+
+   RESPONSIVE — 1200px
+═══════════════════════════════════════════ */
+@media (max-width: 1200px) {
+    .zoo-title {
+        font-size: 42px;
+    }
+
+    .did-card h2 {
+        font-size: 36px;
+    }
+
+    .did-card p {
+        font-size: 17px;
+    }
+
+    .donation-strip-content h2 {
+        font-size: 32px;
+    }
+
+    .view-item {
+        width: 190px;
+    }
+}
+
+   RESPONSIVE — 640px
+═══════════════════════════════════════════ */
+@media (max-width: 640px) {
+    .header {
+        height: auto;
+        padding: 12px 0;
+    }
+
+    .header-container {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .nav-list {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-link {
+        font-size: 11px;
+    }
+
+    .socials {
+        display: none;
+    }
+
+    .side-panel {
+        width: 62px;
+        flex-shrink: 0;
+    }
+
+    .side-panel .animal-item span,
+    .side-panel .live-badge {
+        display: none;
+    }
+
+    .side-panel .animal-item {
+        justify-content: center;
+        padding: 12px 0;
+    }
+
+    .side-panel .side-top {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .zoo-title {
+        font-size: 26px;
+    }
+
+    .zoo-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .views-grid {
+        flex-wrap: wrap;
+    }
+
+    .view-item {
+        width: calc(50% - 8px);
+    }
+
+    .more-views h3 {
+        font-size: 24px;
+    }
+
+    .donation-strip-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .donation-strip-content h2 {
+        font-size: 26px;
+    }
+
+    .donation-action {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .did-card h2 {
+        font-size: 28px;
+    }
+
+    .did-card p {
+        font-size: 15px;
+    }
+
+    .animal-details {
+        grid-template-columns: 1fr;
+    }
+
+    .details-image {
+        width: 100%;
+        height: 220px;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        text-align: center;
+        gap: 18px;
+    }
+
+    .footer-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .footer-copy {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .donate-modal {
+        width: 98%;
+    }
+
+    .modal-hero-img {
+        height: 200px;
+    }
+
+    .modal-hero-body {
+        padding: 20px 20px 24px;
+    }
+
+    .modal-hero-body h2 {
+        font-size: 22px;
+    }
+
+    .modal-content-pad {
+        padding: 0 18px 8px;
+    }
+
+    .modal-footer {
+        padding: 14px 18px 18px;
+    }
+}
+
+@media (max-width: 320px) {
+    .container {
+        padding: 0 14px;
+    }
+
+    .zoo-title {
+        font-size: 20px;
+    }
+
+    .did-card h2 {
+        font-size: 22px;
+    }
+
+    .donation-strip-content h2 {
+        font-size: 20px;
+    }
+
+    .nav-list {
+        gap: 8px;
+    }
+
+    .nav-link {
+        font-size: 10px;
+    }
+
+    .modal-hero-body h2 {
+        font-size: 18px;
+    }
+
+    .amount-btn {
+        padding: 10px 12px;
+        font-size: 12px;
+        min-width: 60px;
+    }
 }

@@ -16,7 +16,6 @@ body {
     width: 100%; 
 }
 
-/* Header */
 .header {
     background-color: #F58021;
     height: 80px;
@@ -290,11 +289,10 @@ body {
     color: #333B41;
 }
 
-/* Виправлений блок стрілок: СТРОГО ПО ЦЕНТРУ */
 .slider-navigation {
     display: flex;
-    justify-content: center; /* Центрування по горизонталі */
-    gap: 20px;               /* Відстань між кнопками */
+    justify-content: center; 
+    gap: 20px;               
     margin-bottom: 40px;
 }
 
@@ -303,7 +301,7 @@ body {
     height: 62px;
     background: #FFFFFF;
     border: 1px solid #333B41;
-    border-radius: 2px;      /* Квадратна форма */
+    border-radius: 2px;      
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -312,12 +310,12 @@ body {
 }
 
 .arrow-btn:hover {
-    background-color: #FE9013; /* Інтерактивність при наведенні */
+    background-color: #FE9013; 
     border-color: #FE9013;
 }
 
 .arrow-btn:hover img {
-    filter: brightness(0) invert(1); /* Робить чорну іконку білою при ховері */
+    filter: brightness(0) invert(1); 
 }
 
 .arrow-btn img {
@@ -325,7 +323,6 @@ body {
     height: auto;
 }
 
-/* Сітка карток: 4 колонки */
 .pets-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -333,7 +330,7 @@ body {
 }
 
 .pet-card {
-    background: #231137; /* Темний фон картки */
+    background: #231137; 
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
@@ -343,7 +340,7 @@ body {
 }
 
 .pet-card:hover {
-    border-color: #FE9013; /* Рамка при наведенні */
+    border-color: #FE9013; 
     transform: translateY(-5px);
 }
 
@@ -370,7 +367,7 @@ body {
 
 .card-body {
     padding: 20px;
-    color: #ffffff; /* Білий текст */
+    color: #ffffff; 
 }
 
 .card-body h3 {
@@ -385,19 +382,18 @@ body {
     line-height: 1.4;
     opacity: 0.8;
     margin-bottom: 20px;
-    height: 60px; /* Вирівнювання висоти опису */
+    height: 60px; 
     overflow: hidden;
 }
 
 .live-link {
-    color: #FE9013; /* Помаранчевий колір посилання */
+    color: #FE9013; 
     text-decoration: none;
     font-weight: bold;
     font-size: 14px;
     text-transform: uppercase;
 }
 
-/* Кнопка CHOOSE YOUR FAVOURITE */
 .btn-choose {
     margin-top: 50px;
     padding: 15px 45px;
@@ -421,7 +417,7 @@ body {
 
 
 .pay-and-feed {
-    background-color: #231137; /* Темний фон з макету */
+    background-color: #231137;
     padding: 80px 0;
     color: #ffffff;
 }
@@ -497,7 +493,6 @@ body {
     opacity: 0.8;
 }
 
-/* Кнопка DONATE NOW */
 .btn-donate-now {
     background: linear-gradient(90deg, #FE9013 0%, #FB6107 100%);
     color: #ffffff;
@@ -523,7 +518,7 @@ body {
 
 
 .pay-and-feed {
-    background-color: #231137; /* Темний фон з макету */
+    background-color: #231137;
     padding: 80px 0;
     color: #ffffff;
 }
@@ -607,7 +602,6 @@ body {
     opacity: 0.8;
 }
 
-/* Кнопка з градієнтом */
 .btn-donate-now {
     display: block;
     margin: 60px auto 0;
@@ -627,17 +621,6 @@ body {
     box-shadow: 0 5px 15px rgba(254, 144, 19, 0.4);
     transform: translateY(-2px);
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -690,7 +673,6 @@ body {
     color: #ffffff;
 }
 
-/* Сітка 2x2 для відгуків */
 .feedback-grid {
     grid-area: grid;
     display: grid;
@@ -714,7 +696,7 @@ body {
 }
 
 .quote-icon img {
-    width: 28px; /* Розмір лапок “.svg” */
+    width: 28px; 
 }
 
 .feedback-card h4 {
@@ -734,7 +716,6 @@ body {
     text-transform: uppercase;
 }
 
-/* Навігація по центру */
 .testimonials-navigation {
     grid-area: nav;
     display: flex;
@@ -979,4 +960,243 @@ body {
     width: 24px;
     height: 24px;
     display: block;
+}
+
+
+@media (max-width: 1200px) {
+    .hero-title {
+        font-size: 50px;
+    }
+
+    .hero-section {
+        height: auto;
+        min-height: 620px;
+        padding: 60px 0;
+    }
+
+    .pets-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card-img {
+        height: 280px;
+    }
+
+    .welcome-image img,
+    .how-work-image img {
+        width: 420px;
+    }
+
+    .step-image {
+        flex: 0 0 360px;
+        height: 250px;
+    }
+
+    .testimonials-wrapper {
+        grid-template-columns: 300px 1fr;
+    }
+
+    .care-title {
+        font-size: 44px;
+    }
+
+    .section-title {
+        font-size: 38px;
+    }
+}
+
+
+@media (max-width: 640px) {
+    .header {
+        height: auto;
+        padding: 12px 0;
+    }
+
+    .header-container {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .nav-list {
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-link {
+        font-size: 12px;
+    }
+
+    .socials {
+        display: none;
+    }
+
+    .hero-section {
+        min-height: 420px;
+        padding: 50px 0;
+        background-position: right center;
+    }
+
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .hero-text {
+        font-size: 14px;
+        margin-bottom: 28px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .welcome-section,
+    .how-work-section {
+        padding: 48px 0;
+    }
+
+    .welcome-container,
+    .how-work-container {
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    .welcome-image img,
+    .how-work-image img {
+        width: 100%;
+    }
+
+    .donation-container {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .donation-title {
+        font-size: 22px;
+    }
+
+    .pets-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .card-img {
+        height: 200px;
+    }
+
+    .step-body {
+        flex-direction: column;
+    }
+
+    .step-image {
+        flex: none;
+        width: 100%;
+        height: 220px;
+    }
+
+    .testimonials-wrapper {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            'info'
+            'grid'
+            'nav'
+            'button';
+    }
+
+    .feedback-grid {
+        grid-template-columns: 1fr;
+        transform: none;
+    }
+
+    .care-title {
+        font-size: 30px;
+    }
+
+    .care-subtitle {
+        font-size: 18px;
+    }
+
+    .care-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .care-hero-image {
+        grid-column: span 1;
+        height: 240px;
+    }
+
+    .care-touch-image {
+        height: 240px;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        text-align: center;
+        gap: 18px;
+    }
+
+    .footer-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .footer-copy {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 320px) {
+    .container {
+        padding: 0 14px;
+    }
+
+    .hero-title {
+        font-size: 26px;
+    }
+
+    .hero-text {
+        font-size: 13px;
+    }
+
+    .section-title {
+        font-size: 22px;
+    }
+
+    .care-title {
+        font-size: 24px;
+    }
+
+    .care-subtitle {
+        font-size: 15px;
+    }
+
+    .pets-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .donation-title {
+        font-size: 18px;
+    }
+
+    .nav-list {
+        gap: 8px;
+    }
+
+    .nav-link {
+        font-size: 11px;
+    }
 }

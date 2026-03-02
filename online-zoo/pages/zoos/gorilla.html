@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Zoo - Gorilla</title>
+    <link rel="icon" href="../../assets/icons/Logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,7 +32,8 @@
         </div>
     </header>
 
-    <main class="zoo-main">
+    <main>
+        <div class="zoo-main">
         <aside class="side-panel" id="sidePanel">
             <div class="side-top">
                 <span class="live-badge">LIVE <img src="../../assets/icons/Vector.svg" alt="live icon"></span>
@@ -68,7 +70,7 @@
             <div class="container zoo-container">
                 <div class="zoo-header">
                     <h1 class="zoo-title">LIVE GORILLA CAMS</h1>
-                    <button class="btn-donate-orange">DONATE NOW <span>➔</span></button>
+                    <button class="btn-donate-orange" id="donateBtn">DONATE NOW <span>➔</span></button>
                 </div>
 
                 <div class="video-container">
@@ -105,7 +107,7 @@
                 </div>
             </div>
         </section>
-    </main>
+        </div>
 
     <section class="donation-strip">
         <div class="container donation-strip-content">
@@ -145,6 +147,7 @@
             <p class="details-text">Gorillas are highly intelligent animals that live in complex social groups. A family group, called a troop, is typically led by a dominant silverback male who protects the group and makes decisions about where to travel and eat. Gorillas spend most of their day foraging for food, eating leaves, stems, fruit, and occasionally insects. They construct new sleeping nests each night from branches and leaves. Despite their fearsome appearance, gorillas are generally gentle and peaceful animals. They are critically endangered due to habitat loss and poaching, making conservation efforts vital for their survival.</p>
         </div>
     </section>
+    </main>
 
     <footer class="site-footer">
         <div class="container footer-container">
@@ -180,6 +183,141 @@
             </div>
         </div>
     </footer>
+
+    <div class="modal-overlay" id="donateModal">
+        <div class="donate-modal">
+            <button class="modal-close" id="modalClose">&#10005;</button>
+
+            <div class="modal-step active" id="step-0">
+                <div class="modal-hero-img">
+                    <img src="../../assets/images/image 129.png" alt="Together we care">
+                </div>
+                <div class="modal-hero-body">
+                    <h2>TOGETHER WE CARE,<br>SAVE AND PROTECT!</h2>
+                    <p>Your most generous gift not only cares for countless animals, but it also offers hope and a vital lifeline to the world's most endangered wildlife relying on us to survive.</p>
+                    <div class="amount-grid amount-grid-hero">
+                        <button class="amount-btn hero-amount">$20</button>
+                        <button class="amount-btn hero-amount">$30</button>
+                        <button class="amount-btn hero-amount">$50</button>
+                        <button class="amount-btn hero-amount">$80</button>
+                        <button class="amount-btn hero-amount">$100</button>
+                        <button class="amount-btn hero-amount amount-other-hero">OTHER AMOUNT</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-header-bar" id="modalHeaderBar" style="display:none">
+                <span>MAKE YOUR DONATION</span>
+            </div>
+
+            <div class="modal-step active" id="step-1">
+                <div class="modal-section-title">Donation Information:</div>
+                <hr class="modal-divider">
+                <div class="modal-content-pad">
+                    <p class="field-req">* Choose your donation amount:</p>
+                    <div class="amount-grid">
+                        <button class="amount-btn">$10</button>
+                        <button class="amount-btn">$20</button>
+                        <button class="amount-btn">$30</button>
+                        <button class="amount-btn">$50</button>
+                        <button class="amount-btn">$80</button>
+                        <button class="amount-btn">$100</button>
+                    </div>
+                    <div class="other-row">
+                        <button class="other-amount-btn">OTHER AMOUNT</button>
+                        <input type="number" class="other-input" placeholder="">
+                    </div>
+                    <div class="pet-row">
+                        <button class="for-pet-btn">FOR SPECIAL PET</button>
+                        <select class="pet-select">
+                            <option value="">Choose your favourite</option>
+                            <option>Lukas the Panda</option>
+                            <option>Andy the Lemur</option>
+                            <option>Glen the Gorilla</option>
+                            <option>Mike the Alligator</option>
+                            <option>Sam &amp; Lora the eagles family</option>
+                            <option>Liz the Koala</option>
+                            <option>Shake the Lion</option>
+                            <option>Senja the Tiger</option>
+                        </select>
+                    </div>
+                    <label class="monthly-row">
+                        <input type="checkbox"> Make this a monthly recurring gift
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <div class="step-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="btn-next-step" data-next="2">NEXT &#10230;</button>
+                </div>
+            </div>
+
+            <div class="modal-step" id="step-2">
+                <div class="modal-section-title">Billing Information:</div>
+                <hr class="modal-divider">
+                <div class="modal-content-pad">
+                    <div class="form-group">
+                        <label>* Your Name</label>
+                        <input type="text" placeholder="First and last name">
+                    </div>
+                    <div class="form-group">
+                        <label>* Your Email Address</label>
+                        <input type="email" placeholder="Enter your email">
+                    </div>
+                    <p class="info-note">You will receive emails from the Online Zoo, including updates and news on the latest discoveries and translations. You can unsubscribe at any time.</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="step-dots">
+                        <span class="dot active"></span>
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <div class="nav-btns">
+                        <button class="btn-back-step" data-back="1">Back</button>
+                        <button class="btn-next-step" data-next="3">NEXT &#10230;</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-step" id="step-3">
+                <div class="modal-section-title">Payment Information:</div>
+                <hr class="modal-divider">
+                <div class="modal-content-pad">
+                    <div class="payment-row">
+                        <div class="form-group">
+                            <label>* Credit Card Number</label>
+                            <input type="text" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label>* CVV Number</label>
+                            <input type="text" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>* Expiration Date</label>
+                        <div class="expiry-row">
+                            <select class="expiry-select"><option value="">Month</option><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option></select>
+                            <select class="expiry-select"><option value="">Year</option><option>2025</option><option>2026</option><option>2027</option><option>2028</option><option>2029</option><option>2030</option><option>2031</option><option>2032</option><option>2033</option><option>2034</option></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="step-dots">
+                        <span class="dot active"></span>
+                        <span class="dot active"></span>
+                        <span class="dot active"></span>
+                    </div>
+                    <div class="nav-btns">
+                        <button class="btn-back-step" data-back="2">Back</button>
+                        <button class="btn-complete">COMPLETE DONATION &#10230;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

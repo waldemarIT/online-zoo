@@ -10,13 +10,24 @@ body {
     color: #333B41;
 }
 
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 30px;
 }
 
-/* ── HEADER ── */
 .header {
     background: #F58021;
     padding: 0 0;
@@ -69,7 +80,6 @@ body {
     height: 28px;
 }
 
-/* ── MAIN ── */
 .contact-main {
     padding: 48px 0 80px;
     background: #fff;
@@ -87,7 +97,6 @@ body {
     border-radius: 4px;
 }
 
-/* ── CONTACT BODY ── */
 .contact-body {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -109,7 +118,6 @@ body {
     color: #555;
 }
 
-/* ── FORM ── */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -178,7 +186,6 @@ body {
     object-fit: contain;
 }
 
-/* ── FOOTER ── */
 .site-footer {
     background: #20113D;
     padding: 36px 0 24px;
@@ -276,4 +283,100 @@ body {
 .footer-socials img {
     width: 28px;
     height: 28px;
+}
+
+   RESPONSIVE — 1200px
+═══════════════════════════════════════════ */
+@media (max-width: 1200px) {
+    .contact-body {
+        gap: 40px;
+    }
+
+    .contact-info h2 {
+        font-size: 30px;
+    }
+}
+
+   RESPONSIVE — 640px
+═══════════════════════════════════════════ */
+@media (max-width: 640px) {
+    .header {
+        height: auto;
+        padding: 12px 0;
+    }
+
+    .header-container {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .nav-list {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-link {
+        font-size: 12px;
+    }
+
+    .socials {
+        display: none;
+    }
+
+    .contact-body {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .contact-info h2 {
+        font-size: 26px;
+    }
+
+    .contact-main {
+        padding: 32px 0 60px;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        text-align: center;
+        gap: 18px;
+    }
+
+    .footer-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .footer-copy {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 320px) {
+    .container {
+        padding: 0 14px;
+    }
+
+    .contact-info h2 {
+        font-size: 22px;
+    }
+
+    .nav-list {
+        gap: 8px;
+    }
+
+    .nav-link {
+        font-size: 10px;
+    }
 }
