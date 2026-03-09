@@ -55,7 +55,8 @@ if (testimonialNext) testimonialNext.addEventListener('click', nextFeedback);
 if (testimonialPrev) testimonialPrev.addEventListener('click', prevFeedback);
 
 document.querySelectorAll('.pet-card').forEach(card => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (e) => {
+        if (e.target.closest('.live-link')) return;
         const link = card.querySelector('.live-link').getAttribute('href');
         if (link) window.location.href = link;
     });

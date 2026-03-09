@@ -387,11 +387,18 @@ body {
 }
 
 .live-link {
-    color: #FE9013; 
+    color: #FE9013;
     text-decoration: none;
     font-weight: bold;
     font-size: 14px;
     text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.live-link:hover {
+    color: #E47209;
+    text-decoration: underline;
 }
 
 .btn-choose {
@@ -907,6 +914,11 @@ body {
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.02em;
+    transition: color 0.2s;
+}
+
+.footer-nav a:hover {
+    color: #F58021;
 }
 
 .footer-donate-btn {
@@ -960,6 +972,11 @@ body {
     width: 24px;
     height: 24px;
     display: block;
+    transition: opacity 0.2s;
+}
+
+.footer-socials a:hover img {
+    opacity: 0.7;
 }
 
 
