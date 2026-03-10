@@ -15,6 +15,8 @@ export default defineConfig({
         gorilla: resolve(__dirname, 'pages/zoos/gorilla.html'),
         lemur: resolve(__dirname, 'pages/zoos/lemur.html'),
         contact: resolve(__dirname, 'pages/contact/index.html'),
+        signin: resolve(__dirname, 'pages/auth/signin.html'),
+        register: resolve(__dirname, 'pages/auth/register.html'),
       },
     },
   },

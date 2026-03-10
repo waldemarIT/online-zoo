@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Zoo - Sign In</title>
+  <link rel="icon" href="../../assets/icons/Logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-container">
+      <a href="../landing/index.html" class="logo">
+        <img src="../../assets/icons/Logo.svg" alt="Online Zoo Logo">
+      </a>
+    </div>
+  </header>
+
+  <main class="auth-main">
+    <div class="auth-card">
+      <h1 class="auth-title">Sign In</h1>
+      <p class="auth-subtitle">Welcome back! Please enter your credentials.</p>
+
+      <div class="auth-error" id="authError"></div>
+
+      <form class="auth-form" id="signinForm" novalidate>
+        <div class="form-group">
+          <label for="login">Login</label>
+          <input type="text" id="login" name="login" placeholder="Enter your login" autocomplete="username">
+          <span class="field-error" id="loginError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password">
+          <span class="field-error" id="passwordError"></span>
+        </div>
+
+        <button type="submit" class="auth-btn" id="submitBtn">SIGN IN</button>
+
+        <p class="auth-link-row">
+          Don't have an account? <a href="register.html">Register</a>
+        </p>
+      </form>
+    </div>
+  </main>
+
+  <script type="module" src="./signin.ts"></script>
+</body>
+</html>
