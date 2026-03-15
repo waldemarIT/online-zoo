@@ -13,6 +13,10 @@
       <a href="../landing/index.html" class="logo">
         <img src="../../assets/icons/Logo.svg" alt="Online Zoo Logo">
       </a>
+      <div class="auth-header-actions">
+        <a href="signin.html" class="auth-nav-link">Sign In</a>
+        <button class="theme-toggle-btn" aria-label="Toggle dark/light theme" title="Switch theme">🌙</button>
+      </div>
     </div>
   </header>
 
@@ -32,14 +36,26 @@
 
         <div class="form-group">
           <label for="login">Login</label>
-          <input type="text" id="login" name="login" placeholder="Choose a login" autocomplete="username">
+          <input type="text" id="login" name="login" placeholder="Username (letters only, e.g. vladsk)" autocomplete="username">
           <span class="field-error" id="loginError"></span>
         </div>
 
         <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email">
+          <span class="field-error" id="emailError"></span>
+        </div>
+
+        <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="At least 6 characters" autocomplete="new-password">
+          <input type="password" id="password" name="password" placeholder="At least 6 characters, 1 special char" autocomplete="new-password">
           <span class="field-error" id="passwordError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repeat your password" autocomplete="new-password">
+          <span class="field-error" id="confirmPasswordError"></span>
         </div>
 
         <button type="submit" class="auth-btn" id="submitBtn">CREATE ACCOUNT</button>

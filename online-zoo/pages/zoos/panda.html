@@ -29,6 +29,7 @@
                 <a href="https://instagram.com" target="_blank" aria-label="Instagram"><img src="../../assets/icons/Instagram.svg" alt="Instagram"></a>
                 <a href="https://facebook.com" target="_blank" aria-label="Facebook"><img src="../../assets/icons/Facebook.svg" alt="Facebook"></a>
             </div>
+            <button class="theme-toggle-btn" aria-label="Toggle dark/light theme" title="Switch theme">&#127769;</button>
         </div>
     </header>
 
@@ -75,7 +76,7 @@
 
                 <div class="video-container">
                     <div class="main-cam" data-video="X9pfmLquC_M">
-                        <img src="https://img.youtube.com/vi/X9pfmLquC_M/maxresdefault.jpg" alt="Lucas, the Giant Panda cam 1" class="cam-thumb">
+                        <img src="https://img.youtube.com/vi/X9pfmLquC_M/hqdefault.jpg" alt="Lucas, the Giant Panda cam 1" class="cam-thumb">
                         <button class="play-btn" aria-label="Play video">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 5.14v14l11-7-11-7z" fill="#fff"/></svg>
                         </button>
@@ -125,29 +126,37 @@
         </div>
     </section>
 
-    <section class="did-you-know">
-        <div class="container">
+    <section class="did-you-know" id="didYouKnowSection">
+        <!-- Loader overlay -->
+        <div class="section-loader" id="sectionLoader">
+            <div class="zoo-spinner"></div>
+        </div>
+        <div class="section-error" id="sectionError" style="display:none">
+            Something went wrong. Please, refresh the page.
+        </div>
+
+        <div class="container" id="didYouKnowContent">
             <div class="did-card">
                 <h2>DID YOU KNOW?</h2>
-                <p>Pandas are often seen eating in a relaxed sitting posture, with their hind legs stretched out before them. They may appear sedentary, but they are skilled tree-climbers and efficient swimmers.</p>
+                <p id="funFactText">Pandas are often seen eating in a relaxed sitting posture, with their hind legs stretched out before them. They may appear sedentary, but they are skilled tree-climbers and efficient swimmers.</p>
             </div>
 
             <div class="animal-details">
-                <div class="details-list">
+                <div class="details-list" id="detailsList">
                     <p><strong>Common name:</strong> Giant Panda</p>
                     <p><strong>Scientific name:</strong> Ailuropoda melanoleuca</p>
                     <p><strong>Type:</strong> Herbivore</p>
                     <p><strong>Size:</strong> 4 to 5 feet</p>
                     <p><strong>Diet:</strong> Omnivore</p>
                     <p><strong>Habitat:</strong> Forests</p>
-                    <p><strong>Range:</strong> Eastern Asia <a href="../map/index.html">VIEW MAP <span>➔</span></a></p>
+                    <p><strong>Range:</strong> Eastern Asia <button class="view-map-btn" id="viewMapBtn">VIEW MAP <span>➔</span></button></p>
                 </div>
                 <div class="details-image">
-                    <img src="../../assets/images/image 163.png" alt="Panda cub">
+                    <img src="../../assets/images/image 163.png" alt="Panda cub" id="animalDetailImg">
                 </div>
             </div>
 
-            <p class="details-text">Giant pandas are very unusual animals that eat almost exclusively bamboo, which is very low in nutrients. Because of this, they use many unique adaptations for their low-energy lifestyle. Giant pandas are solitary. They have a highly developed sense of smell that males use to avoid each other and to find females for mating in the spring. After a five-month pregnancy, females give birth to one or two cubs. Young are completely helpless when born. The blind infants weigh only 5 ounces but can be harnessed by each other's play and are active and curious by the time they are six months old.</p>
+            <p class="details-text" id="detailsText">Giant pandas are very unusual animals that eat almost exclusively bamboo, which is very low in nutrients. Because of this, they use many unique adaptations for their low-energy lifestyle. Giant pandas are solitary. They have a highly developed sense of smell that males use to avoid each other and to find females for mating in the spring. After a five-month pregnancy, females give birth to one or two cubs. Young are completely helpless when born. The blind infants weigh only 5 ounces but can be harnessed by each other's play and are active and curious by the time they are six months old.</p>
         </div>
     </section>
     </main>
@@ -187,6 +196,13 @@
         </div>
     </footer>
 
+    <!-- ── Donation notification ──────────────────────────────── -->
+    <div class="donation-notification" id="donationNotification" style="display:none">
+        <span id="donationNotificationText"></span>
+        <button class="notification-close" id="notificationClose">&#10005;</button>
+    </div>
+
+    <!-- ── Donate Modal ────────────────────────────────────────── -->
     <div class="modal-overlay" id="donateModal">
         <div class="donate-modal">
             <button class="modal-close" id="modalClose">&#10005;</button>
@@ -213,12 +229,12 @@
                 <span>MAKE YOUR DONATION</span>
             </div>
 
-            <div class="modal-step active" id="step-1">
+            <div class="modal-step" id="step-1">
                 <div class="modal-section-title">Donation Information:</div>
                 <hr class="modal-divider">
                 <div class="modal-content-pad">
                     <p class="field-req">* Choose your donation amount:</p>
-                    <div class="amount-grid">
+                    <div class="amount-grid" id="step1AmountGrid">
                         <button class="amount-btn">$10</button>
                         <button class="amount-btn">$20</button>
                         <button class="amount-btn">$30</button>
@@ -227,25 +243,26 @@
                         <button class="amount-btn">$100</button>
                     </div>
                     <div class="other-row">
-                        <button class="other-amount-btn">OTHER AMOUNT</button>
-                        <input type="number" class="other-input" placeholder="">
+                        <button class="other-amount-btn" id="otherAmountBtn">OTHER AMOUNT</button>
+                        <input type="text" class="other-input" id="otherAmountInput" placeholder="Enter amount" style="display:none">
+                        <span class="field-error" id="otherAmountError"></span>
                     </div>
                     <div class="pet-row">
                         <button class="for-pet-btn">FOR SPECIAL PET</button>
-                        <select class="pet-select">
+                        <select class="pet-select" id="petSelect">
                             <option value="">Choose your favourite</option>
-                            <option>Lukas the Panda</option>
-                            <option>Andy the Lemur</option>
-                            <option>Glen the Gorilla</option>
-                            <option>Mike the Alligator</option>
-                            <option>Sam &amp; Lora the eagles family</option>
-                            <option>Liz the Koala</option>
-                            <option>Shake the Lion</option>
-                            <option>Senja the Tiger</option>
+                            <option value="Lukas the Panda">Lukas the Panda</option>
+                            <option value="Andy the Lemur">Andy the Lemur</option>
+                            <option value="Glen the Gorilla">Glen the Gorilla</option>
+                            <option value="Mike the Alligator">Mike the Alligator</option>
+                            <option value="Sam &amp; Lora the Eagles">Sam &amp; Lora the Eagles</option>
+                            <option value="Liz the Koala">Liz the Koala</option>
+                            <option value="Shake the Lion">Shake the Lion</option>
+                            <option value="Senja the Tiger">Senja the Tiger</option>
                         </select>
                     </div>
                     <label class="monthly-row">
-                        <input type="checkbox"> Make this a monthly recurring gift
+                        <input type="checkbox" id="monthlyCheck"> Make this a monthly recurring gift
                     </label>
                 </div>
                 <div class="modal-footer">
@@ -254,7 +271,7 @@
                         <span class="dot"></span>
                         <span class="dot"></span>
                     </div>
-                    <button class="btn-next-step" data-next="2">NEXT &#10230;</button>
+                    <button class="btn-next-step" id="step1Next" data-next="2" disabled>NEXT &#10230;</button>
                 </div>
             </div>
 
@@ -264,11 +281,13 @@
                 <div class="modal-content-pad">
                     <div class="form-group">
                         <label>* Your Name</label>
-                        <input type="text" placeholder="First and last name">
+                        <input type="text" id="billingName" placeholder="First and last name">
+                        <span class="field-error" id="billingNameError"></span>
                     </div>
                     <div class="form-group">
                         <label>* Your Email Address</label>
-                        <input type="email" placeholder="Enter your email">
+                        <input type="email" id="billingEmail" placeholder="Enter your email">
+                        <span class="field-error" id="billingEmailError"></span>
                     </div>
                     <p class="info-note">You will receive emails from the Online Zoo, including updates and news on the latest discoveries and translations. You can unsubscribe at any time.</p>
                 </div>
@@ -280,7 +299,7 @@
                     </div>
                     <div class="nav-btns">
                         <button class="btn-back-step" data-back="1">Back</button>
-                        <button class="btn-next-step" data-next="3">NEXT &#10230;</button>
+                        <button class="btn-next-step" id="step2Next" data-next="3" disabled>NEXT &#10230;</button>
                     </div>
                 </div>
             </div>
@@ -289,23 +308,54 @@
                 <div class="modal-section-title">Payment Information:</div>
                 <hr class="modal-divider">
                 <div class="modal-content-pad">
+                    <!-- Saved cards dropdown (shown only if user has saved cards) -->
+                    <div class="saved-cards-row" id="savedCardsRow" style="display:none">
+                        <label>Saved cards:</label>
+                        <select id="savedCardsSelect">
+                            <option value="">-- Select saved card --</option>
+                        </select>
+                    </div>
+
                     <div class="payment-row">
                         <div class="form-group">
-                            <label>* Credit Card Number</label>
-                            <input type="text" placeholder="">
+                            <label>* Credit Card Number (16 digits)</label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                            <span class="field-error" id="cardNumberError"></span>
                         </div>
                         <div class="form-group">
-                            <label>* CVV Number</label>
-                            <input type="text" placeholder="">
+                            <label>* CVV (3 digits)</label>
+                            <input type="text" id="cardCvv" placeholder="123" maxlength="3">
+                            <span class="field-error" id="cardCvvError"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>* Expiration Date</label>
+                        <label>* Expiration Date (MM/YY)</label>
                         <div class="expiry-row">
-                            <select class="expiry-select"><option value="">Month</option><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option></select>
-                            <select class="expiry-select"><option value="">Year</option><option>2025</option><option>2026</option><option>2027</option><option>2028</option><option>2029</option><option>2030</option><option>2031</option><option>2032</option><option>2033</option><option>2034</option></select>
+                            <select id="expiryMonth" class="expiry-select">
+                                <option value="">Month</option>
+                                <option value="01">01</option><option value="02">02</option>
+                                <option value="03">03</option><option value="04">04</option>
+                                <option value="05">05</option><option value="06">06</option>
+                                <option value="07">07</option><option value="08">08</option>
+                                <option value="09">09</option><option value="10">10</option>
+                                <option value="11">11</option><option value="12">12</option>
+                            </select>
+                            <select id="expiryYear" class="expiry-select">
+                                <option value="">Year</option>
+                                <option value="26">2026</option><option value="27">2027</option>
+                                <option value="28">2028</option><option value="29">2029</option>
+                                <option value="30">2030</option><option value="31">2031</option>
+                                <option value="32">2032</option><option value="33">2033</option>
+                                <option value="34">2034</option><option value="35">2035</option>
+                            </select>
                         </div>
+                        <span class="field-error" id="expiryError"></span>
                     </div>
+
+                    <!-- Save card checkbox (shown only for logged-in users) -->
+                    <label class="monthly-row save-card-row" id="saveCardRow" style="display:none">
+                        <input type="checkbox" id="saveCardCheck"> Save card info for future donations
+                    </label>
                 </div>
                 <div class="modal-footer">
                     <div class="step-dots">
@@ -315,13 +365,24 @@
                     </div>
                     <div class="nav-btns">
                         <button class="btn-back-step" data-back="2">Back</button>
-                        <button class="btn-complete">COMPLETE DONATION &#10230;</button>
+                        <button class="btn-complete" id="completeDonateBtn" disabled>COMPLETE DONATION &#10230;</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- ── Map Modal ───────────────────────────────────────────── -->
+    <div class="map-modal-overlay" id="mapModal" style="display:none">
+        <div class="map-modal">
+            <button class="map-modal-close" id="mapModalClose">&#10005;</button>
+            <h3 class="map-modal-title" id="mapModalTitle">Animal Range Map</h3>
+            <div id="mapContainer" style="height:420px; width:100%;"></div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script type="module" src="./script.ts"></script>
 </body>
 </html>

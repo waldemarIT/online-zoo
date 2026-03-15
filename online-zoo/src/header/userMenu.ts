@@ -2,11 +2,18 @@ import './userMenu.css';
 import { getCurrentUser, isLoggedIn, signOut } from '../api/auth.js';
 import type { User } from '../types/index.js';
 
+function resolveAuthPath(page: string): string {
+  // Works both from /pages/landing/ and /pages/zoos/ etc.
+  const depth = window.location.pathname.split('/').filter(Boolean).length;
+  const prefix = depth >= 2 ? '../auth/' : 'pages/auth/';
+  return `${prefix}${page}`;
+}
+
 function buildGuestPopup(): string {
   return `
     <ul class="user-popup-list">
-      <li><a href="/pages/auth/signin.html" class="user-popup-link">Sign In</a></li>
-      <li><a href="/pages/auth/register.html" class="user-popup-link">Registration</a></li>
+      <li><a href="${resolveAuthPath('signin.html')}" class="user-popup-link">Sign In</a></li>
+      <li><a href="${resolveAuthPath('register.html')}" class="user-popup-link">Registration</a></li>
     </ul>
   `;
 }
@@ -28,8 +35,10 @@ function buildUserIcon(user: User | null): string {
       <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
   `;
-  const nameSpan = user ? `<span class="user-name">${user.name}</span>` : '';
-  return svgIcon + nameSpan;
+  const label = user
+    ? `<span class="user-name">${user.name}</span>`
+    : `<span class="user-name">Sign In</span>`;
+  return svgIcon + label;
 }
 
 export function initUserMenu(): void {

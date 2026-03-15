@@ -1,15 +1,18 @@
 import { initUserMenu } from '../../src/header/userMenu.js';
 import { fetchAnimals, fetchFeedbacks } from '../../src/api/animals.js';
+import { initTheme } from '../../src/theme/theme.js';
 import type { Animal, Feedback } from '../../src/types/index.js';
 
-// ── User menu ──────────────────────────────────────────────
+// ── User menu + Theme ──────────────────────────────────────
 initUserMenu();
+initTheme();
 
 // ── Pet slider ─────────────────────────────────────────────
 const prevBtn = document.getElementById('prevBtn') as HTMLButtonElement | null;
 const nextBtn = document.getElementById('nextBtn') as HTMLButtonElement | null;
 const track = document.getElementById('sliderTrack') as HTMLElement | null;
 const petsGrid = track?.querySelector<HTMLElement>('.pets-grid') ?? null;
+const sliderLoader = document.getElementById('sliderLoader') as HTMLElement | null;
 
 function goNext(): void {
   if (!petsGrid || petsGrid.children.length < 2) return;
@@ -30,6 +33,8 @@ prevBtn?.addEventListener('click', goPrev);
 const testimonialPrev = document.getElementById('testimonialPrev') as HTMLButtonElement | null;
 const testimonialNext = document.getElementById('testimonialNext') as HTMLButtonElement | null;
 const feedbackContainer = document.querySelector<HTMLElement>('.feedback-grid');
+const feedbackLoader = document.getElementById('feedbackLoader') as HTMLElement | null;
+const feedbackError = document.getElementById('feedbackError') as HTMLElement | null;
 
 function nextFeedback(): void {
   if (!feedbackContainer || feedbackContainer.children.length < 2) return;
@@ -76,8 +81,9 @@ const ANIMAL_PAGE_MAP: Record<string, string> = {
 };
 
 function getAnimalPage(animal: Animal): string {
-  const id = animal.id.toLowerCase();
-  return ANIMAL_PAGE_MAP[id] ?? '../zoos/panda.html';
+  const name = (animal.commonName ?? animal.name ?? '').toLowerCase();
+  const slug = Object.keys(ANIMAL_PAGE_MAP).find(key => name.includes(key));
+  return slug ? ANIMAL_PAGE_MAP[slug] : '../zoos/panda.html';
 }
 
 // ── Render animals from API ────────────────────────────────
@@ -101,13 +107,19 @@ function buildAnimalCard(animal: Animal): string {
 
 async function loadAnimals(): Promise<void> {
   if (!petsGrid) return;
+  const sliderWindow = document.querySelector<HTMLElement>('.slider-window');
+
   try {
     const animals = await fetchAnimals();
-    if (!animals.length) return;
-    petsGrid.innerHTML = animals.map(buildAnimalCard).join('');
-    bindCardClicks();
+    if (animals.length) {
+      petsGrid.innerHTML = animals.map(buildAnimalCard).join('');
+      bindCardClicks();
+    }
   } catch {
-    // API unavailable — keep static HTML cards
+    // Silently keep hardcoded fallback cards
+  } finally {
+    if (sliderLoader) sliderLoader.style.display = 'none';
+    if (sliderWindow) sliderWindow.style.display = '';
   }
 }
 
@@ -115,11 +127,10 @@ async function loadAnimals(): Promise<void> {
 function buildFeedbackCard(fb: Feedback): string {
   return `
     <div class="feedback-card">
-      <p class="feedback-text">"${fb.text}"</p>
-      <div class="feedback-author">
-        <strong>${fb.author}</strong>
-        <span>${fb.location} · ${fb.date}</span>
-      </div>
+      <div class="quote-icon"><img src="../../assets/icons/quote.svg" alt="quote"></div>
+      <h4>${fb.location}, ${fb.date}</h4>
+      <p>${fb.text}</p>
+      <span class="author">${fb.author.toUpperCase()}</span>
     </div>
   `;
 }
@@ -128,10 +139,11 @@ async function loadFeedbacks(): Promise<void> {
   if (!feedbackContainer) return;
   try {
     const feedbacks = await fetchFeedbacks();
-    if (!feedbacks.length) return;
-    feedbackContainer.innerHTML = feedbacks.map(buildFeedbackCard).join('');
+    if (feedbacks.length) {
+      feedbackContainer.innerHTML = feedbacks.map(buildFeedbackCard).join('');
+    }
   } catch {
-    // API unavailable — keep static HTML testimonials
+    // Silently keep hardcoded fallback cards, no error shown
   }
 }
 

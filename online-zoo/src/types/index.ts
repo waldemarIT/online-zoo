@@ -38,21 +38,17 @@ export interface AuthCredentials {
 
 export interface RegisterPayload {
   login: string;
+  email: string;
   password: string;
   name: string;
 }
 
 // ─── Donation ────────────────────────────────────────────────────
 export interface DonationPayload {
-  amount: number;
-  petId: string;
-  petName: string;
   name: string;
   email: string;
-  cardNumber: string;
-  cvv: string;
-  expirationDate: string;
-  monthly: boolean;
+  amount: number;
+  petId: number;
 }
 
 export interface DonationResponse {

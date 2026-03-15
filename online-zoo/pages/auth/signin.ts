@@ -1,4 +1,6 @@
 import { signIn, isLoggedIn } from '../../src/api/auth.js';
+import { initTheme } from '../../src/theme/theme.js';
+initTheme();
 
 // Redirect if already logged in
 if (isLoggedIn()) {
@@ -13,38 +15,95 @@ const passwordError = document.getElementById('passwordError') as HTMLElement;
 const authError = document.getElementById('authError') as HTMLElement;
 const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
 
-function clearErrors(): void {
-  loginError.textContent = '';
-  passwordError.textContent = '';
-  authError.textContent = '';
-  authError.classList.remove('visible');
-  loginInput.classList.remove('invalid');
-  passwordInput.classList.remove('invalid');
-}
+// ── Validation rules ───────────────────────────────────────
+const LOGIN_REGEX = /^([A-Za-z][A-Za-z0-9_]{2,}|[^\s@]+@[^\s@]+\.[^\s@]+)$/; // username or email
+const PASSWORD_SPECIAL = /[^A-Za-z0-9]/;        // at least 1 special char
 
-function validate(): boolean {
-  let valid = true;
-
-  if (!loginInput.value.trim()) {
+function validateLogin(): boolean {
+  const val = loginInput.value.trim();
+  if (!val) {
     loginError.textContent = 'Login is required';
     loginInput.classList.add('invalid');
-    valid = false;
+    return false;
   }
-
-  if (!passwordInput.value) {
-    passwordError.textContent = 'Password is required';
-    passwordInput.classList.add('invalid');
-    valid = false;
+  if (!LOGIN_REGEX.test(val)) {
+    loginError.textContent = 'Enter a valid email or a username (letters, digits, _, min 3 characters)';
+    loginInput.classList.add('invalid');
+    return false;
   }
-
-  return valid;
+  loginError.textContent = '';
+  loginInput.classList.remove('invalid');
+  return true;
 }
 
+function validatePassword(): boolean {
+  const val = passwordInput.value;
+  if (!val) {
+    passwordError.textContent = 'Password is required';
+    passwordInput.classList.add('invalid');
+    return false;
+  }
+  if (val.length < 6) {
+    passwordError.textContent = 'Password must be at least 6 characters';
+    passwordInput.classList.add('invalid');
+    return false;
+  }
+  if (!PASSWORD_SPECIAL.test(val)) {
+    passwordError.textContent = 'Password must contain at least 1 special character';
+    passwordInput.classList.add('invalid');
+    return false;
+  }
+  passwordError.textContent = '';
+  passwordInput.classList.remove('invalid');
+  return true;
+}
+
+function checkFormValid(): void {
+  const loginVal = loginInput.value.trim();
+  const passVal = passwordInput.value;
+  const loginOk = LOGIN_REGEX.test(loginVal);
+  const passOk = passVal.length >= 6 && PASSWORD_SPECIAL.test(passVal);
+  submitBtn.disabled = !(loginOk && passOk);
+}
+
+// Initially disabled
+submitBtn.disabled = true;
+
+// ── Blur validation ────────────────────────────────────────
+loginInput.addEventListener('blur', (): void => {
+  validateLogin();
+  checkFormValid();
+});
+
+passwordInput.addEventListener('blur', (): void => {
+  validatePassword();
+  checkFormValid();
+});
+
+// ── Focus: clear errors ────────────────────────────────────
+loginInput.addEventListener('focus', (): void => {
+  loginError.textContent = '';
+  loginInput.classList.remove('invalid');
+});
+
+passwordInput.addEventListener('focus', (): void => {
+  passwordError.textContent = '';
+  passwordInput.classList.remove('invalid');
+});
+
+// ── Input: check button state ──────────────────────────────
+loginInput.addEventListener('input', checkFormValid);
+passwordInput.addEventListener('input', checkFormValid);
+
+// ── Submit ─────────────────────────────────────────────────
 form.addEventListener('submit', async (e: Event): Promise<void> => {
   e.preventDefault();
-  clearErrors();
+  authError.textContent = '';
+  authError.classList.remove('visible');
 
-  if (!validate()) return;
+  const loginOk = validateLogin();
+  const passOk = validatePassword();
+  if (!loginOk || !passOk) return;
 
   submitBtn.disabled = true;
   submitBtn.textContent = 'Signing in...';
@@ -55,11 +114,11 @@ form.addEventListener('submit', async (e: Event): Promise<void> => {
       password: passwordInput.value,
     });
     window.location.href = '../landing/index.html';
-  } catch (err) {
-    const message = err instanceof Error ? err.message : 'Sign in failed. Please try again.';
-    authError.textContent = message;
+  } catch {
+    authError.textContent = 'Incorrect login or password';
     authError.classList.add('visible');
     submitBtn.disabled = false;
     submitBtn.textContent = 'SIGN IN';
+    checkFormValid();
   }
 });
