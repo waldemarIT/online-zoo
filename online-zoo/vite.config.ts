@@ -4,6 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   root: '.',
+  base: '/online-zoo/',
   build: {
     outDir: 'dist',
     rollupOptions: {

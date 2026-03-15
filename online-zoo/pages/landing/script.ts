@@ -33,8 +33,7 @@ prevBtn?.addEventListener('click', goPrev);
 const testimonialPrev = document.getElementById('testimonialPrev') as HTMLButtonElement | null;
 const testimonialNext = document.getElementById('testimonialNext') as HTMLButtonElement | null;
 const feedbackContainer = document.querySelector<HTMLElement>('.feedback-grid');
-const feedbackLoader = document.getElementById('feedbackLoader') as HTMLElement | null;
-const feedbackError = document.getElementById('feedbackError') as HTMLElement | null;
+
 
 function nextFeedback(): void {
   if (!feedbackContainer || feedbackContainer.children.length < 2) return;

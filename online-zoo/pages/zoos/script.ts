@@ -465,7 +465,7 @@ async function submitDonation(): Promise<void> {
   const rawCard = (cardNumber?.value ?? '').replace(/\s/g, '');
   const cvvVal = cardCvv?.value.trim() ?? '';
   const expirationDate = `${expiryMonth?.value ?? ''}/${expiryYear?.value ?? ''}`;
-  const petName = currentAnimal?.commonName ?? currentAnimal?.name ?? '';
+
 
   const payload: DonationPayload = {
     name: billingName?.value.trim() ?? '',
