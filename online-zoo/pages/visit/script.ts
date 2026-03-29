@@ -4,6 +4,24 @@ import { initTheme } from '../../src/theme/theme.js';
 initUserMenu();
 initTheme();
 
+// ── Burger menu ────────────────────────────────────────────
+const burger = document.querySelector<HTMLButtonElement>('.burger-menu');
+const nav = document.querySelector<HTMLElement>('.navigation');
+if (burger && nav) {
+  burger.addEventListener('click', (): void => {
+    const isOpen = nav.classList.toggle('nav-open');
+    burger.classList.toggle('burger-active', isOpen);
+    burger.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e: MouseEvent): void => {
+    if (!burger.contains(e.target as Node) && !nav.contains(e.target as Node)) {
+      nav.classList.remove('nav-open');
+      burger.classList.remove('burger-active');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
 // ── Types ──────────────────────────────────────────────────
 interface Comment {
   id: string;
