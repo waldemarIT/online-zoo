@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Zoo - My Favourites</title>
+    <link rel="icon" href="../../assets/icons/Logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="../landing/index.html" class="logo">
+                <img src="../../assets/icons/Logo.svg" alt="Online Zoo Logo">
+            </a>
+            <nav class="navigation">
+                <ul class="nav-list">
+                    <li><a href="../landing/index.html" class="nav-link">ABOUT</a></li>
+                    <li><a href="../map/index.html" class="nav-link">MAP</a></li>
+                    <li><a href="../zoos/panda.html" class="nav-link">ZOOS</a></li>
+                    <li><a href="../contact/index.html" class="nav-link">CONTACT US</a></li>
+                    <li><a href="#" class="nav-link active">FAVOURITES</a></li>
+                </ul>
+            </nav>
+            <div class="socials">
+                <a href="https://youtube.com" target="_blank"><img src="../../assets/icons/YouTube.svg" alt="YouTube"></a>
+                <a href="https://instagram.com" target="_blank"><img src="../../assets/icons/Instagram.svg" alt="Instagram"></a>
+                <a href="https://facebook.com" target="_blank"><img src="../../assets/icons/Facebook.svg" alt="Facebook"></a>
+            </div>
+            <button class="theme-toggle-btn" aria-label="Toggle dark/light theme" title="Switch theme">🌙</button>
+        </div>
+    </header>
+
+    <main class="favourites-main">
+        <div class="container">
+            <h1 class="favourites-title">MY FAVOURITE ANIMALS</h1>
+            <p class="favourites-subtitle">Animals you've saved from the live cam pages</p>
+
+            <div class="favourites-grid" id="favouritesGrid"></div>
+
+            <div class="favourites-empty" id="favouritesEmpty" style="display:none">
+                <p>You haven't saved any favourite animals yet.</p>
+                <a href="../zoos/panda.html" class="btn-explore">EXPLORE ANIMALS <span>➔</span></a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="../../assets/icons/Logo.svg" alt="Online Zoo">
+                    <img src="../../assets/icons/outline 1.svg" alt="Logo icon">
+                    <img src="../../assets/icons/rs_school_js logo.svg" alt="RS School">
+                </div>
+                <nav class="footer-nav">
+                    <a href="../landing/index.html">ABOUT</a>
+                    <a href="../map/index.html">MAP</a>
+                    <a href="../zoos/panda.html">ZOOS</a>
+                    <a href="../contact/index.html">CONTACT US</a>
+                </nav>
+                <button class="footer-donate-btn">DONATE FOR VOLUNTEERS <img src="../../assets/icons/arrow.svg" alt="→"></button>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">
+                    <span>© 2021 DinaK</span>
+                    <span>© Yem Digital</span>
+                    <span>© RSSchool</span>
+                </div>
+                <div class="footer-socials">
+                    <a href="https://youtube.com" target="_blank"><img src="../../assets/icons/YouTube.svg" alt="YouTube"></a>
+                    <a href="https://instagram.com" target="_blank"><img src="../../assets/icons/Instagram.svg" alt="Instagram"></a>
+                    <a href="https://facebook.com" target="_blank"><img src="../../assets/icons/Facebook.svg" alt="Facebook"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="./script.ts"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@ import { getCurrentUser, isLoggedIn } from '../../src/api/auth.js';
 import { initTheme } from '../../src/theme/theme.js';
 import type { Animal, DonationPayload, DonationResponse, SavedCard } from '../../src/types/index.js';
 import { LocalStorageKey } from '../../src/types/index.js';
+import { isFavourite, toggleFavourite } from '../../src/favourites/favourites.js';
 
 // ── Leaflet type shim ──────────────────────────────────────
 declare const L: {
@@ -508,6 +509,18 @@ function prefillBillingFromUser(): void {
   checkStep2Valid();
 }
 
+// ── Helper: open donate modal from step 0 ─────────────────
+function openDonateModal(): void {
+  showStep(0);
+  const hdr = document.getElementById('modalHeaderBar');
+  if (hdr) hdr.style.display = 'none';
+  donateModal?.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  checkStep1Valid();
+  if (saveCardRow) saveCardRow.style.display = isLoggedIn() ? 'flex' : 'none';
+  populateSavedCards();
+}
+
 // ── Modal open / close ─────────────────────────────────────
 donateBtn?.addEventListener('click', (): void => {
   showStep(0);
@@ -589,22 +602,55 @@ donateModal?.addEventListener('click', (e: MouseEvent): void => {
   }
 });
 
-// ── Click-to-play YouTube video ────────────────────────────
+// ── Connect all donate buttons to modal ───────────────────
+document.querySelectorAll<HTMLElement>('.donate-amount-btn, .footer-donate-btn').forEach((btn): void => {
+  btn.addEventListener('click', openDonateModal);
+});
+
+// ── Favourite button ───────────────────────────────────────
+const favouriteBtn = document.getElementById('favouriteBtn') as HTMLButtonElement | null;
+
+const ANIMAL_META: Record<string, { name: string; title: string; image: string }> = {
+  panda: { name: 'Lucas', title: 'Giant Panda', image: 'https://img.youtube.com/vi/X9pfmLquC_M/hqdefault.jpg' },
+  eagle: { name: 'Sam & Lora', title: 'Bald Eagles', image: 'https://img.youtube.com/vi/G8CST7MOWWU/hqdefault.jpg' },
+  gorilla: { name: 'Glen', title: 'Gorilla', image: 'https://img.youtube.com/vi/bQq4z5HmH04/hqdefault.jpg' },
+  lemur: { name: 'Andy', title: 'Madagascan Lemur', image: 'https://img.youtube.com/vi/J0KW2cqdXwk/hqdefault.jpg' },
+};
+
+function updateFavBtn(animalId: string): void {
+  if (!favouriteBtn) return;
+  const saved = isFavourite(animalId);
+  favouriteBtn.textContent = saved ? '❤️ FAVOURITED' : '♡ FAVOURITE';
+  favouriteBtn.classList.toggle('active', saved);
+}
+
+if (favouriteBtn) {
+  const animalId = getAnimalIdFromUrl();
+  updateFavBtn(animalId);
+
+  favouriteBtn.addEventListener('click', (): void => {
+    const meta = ANIMAL_META[animalId];
+    if (!meta) return;
+    toggleFavourite({
+      id: animalId,
+      name: meta.name,
+      title: meta.title,
+      page: `${animalId}.html`,
+      image: meta.image,
+    });
+    updateFavBtn(animalId);
+  });
+}
+
+// ── Click-to-play: open YouTube in new tab ─────────────────
 document.querySelectorAll<HTMLElement>('.main-cam[data-video]').forEach((cam): void => {
   const playBtn = cam.querySelector<HTMLButtonElement>('.play-btn');
   if (!playBtn) return;
 
   playBtn.addEventListener('click', (): void => {
     const videoId = cam.dataset['video'];
-    const label = cam.querySelector<HTMLElement>('.cam-label');
-    const labelText = label?.textContent ?? '';
-
-    cam.innerHTML = `
-      <iframe
-        src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1"
-        title="${labelText}"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>`;
+    if (videoId) {
+      window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+    }
   });
 });

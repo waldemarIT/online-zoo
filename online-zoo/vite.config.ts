@@ -18,6 +18,8 @@ export default defineConfig({
         contact: resolve(__dirname, 'pages/contact/index.html'),
         signin: resolve(__dirname, 'pages/auth/signin.html'),
         register: resolve(__dirname, 'pages/auth/register.html'),
+        favourites: resolve(__dirname, 'pages/favourites/index.html'),
+        visit: resolve(__dirname, 'pages/visit/index.html'),
       },
     },
   },

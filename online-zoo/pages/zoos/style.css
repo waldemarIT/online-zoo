@@ -496,6 +496,12 @@ body {
     text-transform: uppercase;
 }
 
+.zoo-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .btn-donate-orange {
     background: #F58021;
     color: #fff;
@@ -509,6 +515,26 @@ body {
 
 .btn-donate-orange:hover {
     background: #E47209;
+}
+
+.btn-favourite {
+    background: transparent;
+    color: #F58021;
+    border: 2px solid #F58021;
+    border-radius: 4px;
+    padding: 12px 20px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-favourite:hover,
+.btn-favourite.active {
+    background: #F58021;
+    color: #fff;
 }
 
 .main-cam {
