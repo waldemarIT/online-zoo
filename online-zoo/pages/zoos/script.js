@@ -70,3 +70,21 @@ if (donateBtn && donateModal) {
         }
     });
 }
+// ── Click-to-play YouTube video ──
+document.querySelectorAll('.main-cam[data-video]').forEach(cam => {
+    const playBtn = cam.querySelector('.play-btn');
+    if (!playBtn) return;
+
+    playBtn.addEventListener('click', () => {
+        const videoId = cam.dataset.video;
+        const label = cam.querySelector('.cam-label');
+        const labelText = label ? label.textContent : '';
+
+        cam.innerHTML =
+            `<iframe
+                src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1"
+                title="${labelText}"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>`;
+    });
+});

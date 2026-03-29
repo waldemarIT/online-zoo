@@ -1,3 +1,48 @@
+/* ── Theme CSS variables ───────────────────────────────────── */
+:root {
+    --bg-primary: #f5f5f5;
+    --bg-secondary: #ffffff;
+    --text-primary: #333B41;
+    --text-secondary: #666;
+    --header-bg: #F58021;
+    --border-color: #e0e0e0;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --text-primary: #e0e0e0;
+    --text-secondary: #aaa;
+    --header-bg: #c96a15;
+    --border-color: #444;
+}
+
+/* ── Theme toggle button ───────────────────────────────────── */
+.theme-toggle-btn {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+.theme-toggle-btn:hover { background: rgba(255,255,255,0.35); }
+
+/* ── Dark mode overrides ───────────────────────────────────── */
+[data-theme="dark"] body { background: var(--bg-primary); color: var(--text-primary); }
+[data-theme="dark"] .header { background: var(--header-bg); }
+[data-theme="dark"] .map-title { color: var(--text-primary); }
+[data-theme="dark"] .nav-link { color: var(--text-primary); }
+[data-theme="dark"] .site-footer { background: #0f3460; }
+[data-theme="dark"] .nav-link { color: var(--text-primary); }
+
 * {
     margin: 0;
     padding: 0;
@@ -6,8 +51,9 @@
 
 body {
     font-family: sans-serif;
-    background: #f5f5f5;
-    color: #333B41;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
@@ -47,9 +93,14 @@ body {
     color: #000;
     font-size: 13px;
     font-weight: 600;
+    transition: color 0.2s;
 }
 
 .nav-link.active {
+    color: #00A092;
+}
+
+.nav-link:hover {
     color: #00A092;
 }
 
@@ -63,6 +114,11 @@ body {
     width: 24px;
     height: 24px;
     display: block;
+    transition: opacity 0.2s;
+}
+
+.socials a:hover img {
+    opacity: 0.7;
 }
 
 .map-section {
@@ -154,6 +210,11 @@ body {
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.02em;
+    transition: color 0.2s;
+}
+
+.footer-nav a:hover {
+    color: #F58021;
 }
 
 .footer-donate-btn {
@@ -169,6 +230,12 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 14px;
+    transition: 0.3s;
+}
+
+.footer-donate-btn:hover {
+    background: #F58021;
+    border-color: #F58021;
 }
 
 .footer-donate-btn img {
@@ -201,11 +268,58 @@ body {
     width: 24px;
     height: 24px;
     display: block;
+    transition: opacity 0.2s;
 }
 
+.footer-socials a:hover img {
+    opacity: 0.7;
+}
+
+/* =============================================
+   BURGER MENU (hidden on desktop)
+   ============================================= */
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    order: -1;
+}
+
+.burger-menu span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: #fff;
+    border-radius: 3px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.burger-menu.burger-active span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+
+.burger-menu.burger-active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.burger-active span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* =============================================
    RESPONSIVE — 1200px
-═══════════════════════════════════════════ */
+   ============================================= */
 @media (max-width: 1200px) {
+    .container {
+        padding: 0 24px;
+    }
+
     .map-title {
         font-size: 48px;
     }
@@ -213,53 +327,100 @@ body {
     .map-pin {
         width: 58px;
     }
+
+    .nav-list {
+        gap: 22px;
+    }
 }
 
-   RESPONSIVE — 640px
-═══════════════════════════════════════════ */
+/* =============================================
+   RESPONSIVE — 640px (tablet & small)
+   ============================================= */
 @media (max-width: 640px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    /* ---- Header ---- */
     .header {
         height: auto;
-        padding: 12px 0;
+        padding: 14px 0;
     }
 
     .header-container {
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-    }
-
-    .nav-list {
-        gap: 12px;
         flex-wrap: wrap;
-        justify-content: center;
+        gap: 0;
+        position: relative;
     }
 
-    .nav-link {
-        font-size: 11px;
+    .burger-menu {
+        display: flex;
+    }
+
+    .logo {
+        flex: 1;
     }
 
     .socials {
         display: none;
     }
 
+    /* Nav slides down below header row */
+    .navigation {
+        width: 100%;
+        order: 3;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.35s ease;
+    }
+
+    .navigation.nav-open {
+        max-height: 300px;
+    }
+
+    /* Make nav-list a vertical column */
+    .nav-list {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 10px 0 4px;
+    }
+
+    .nav-list li {
+        width: 100%;
+    }
+
+    .nav-link {
+        display: block;
+        font-size: 13px;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    /* ---- Map section ---- */
+    .map-section {
+        padding: 24px 0 36px;
+    }
+
     .map-title {
-        font-size: 32px;
-        margin-bottom: 28px;
+        font-size: 20px;
+        margin-bottom: 16px;
     }
 
     .map-pin {
-        width: 46px;
+        width: 40px;
     }
 
-    .map-section {
-        padding: 28px 0 40px;
-    }
-
+    /* ---- Footer ---- */
     .footer-top {
         flex-direction: column;
+        align-items: center;
         text-align: center;
-        gap: 18px;
+        gap: 20px;
+    }
+
+    .footer-brand {
+        justify-content: center;
     }
 
     .footer-nav {
@@ -270,7 +431,7 @@ body {
 
     .footer-bottom {
         flex-direction: column;
-        gap: 12px;
+        gap: 14px;
         text-align: center;
     }
 
@@ -279,27 +440,62 @@ body {
         justify-content: center;
         gap: 10px;
     }
+
+    .footer-socials {
+        justify-content: center;
+    }
 }
 
-@media (max-width: 320px) {
-    .container {
-        padding: 0 14px;
+/* =============================================
+   RESPONSIVE — 480px (phone)
+   ============================================= */
+@media (max-width: 480px) {
+    .map-title {
+        font-size: 15px;
+        margin-bottom: 12px;
     }
 
-    .map-title {
-        font-size: 24px;
-        margin-bottom: 20px;
+    .map-title br {
+        display: none;
     }
 
     .map-pin {
-        width: 36px;
+        width: 28px;
     }
 
-    .nav-list {
-        gap: 8px;
+    .map-section {
+        padding: 20px 0 28px;
+    }
+
+    .footer-donate-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+    }
+
+    .footer-brand img {
+        height: 30px;
+    }
+}
+
+/* =============================================
+   RESPONSIVE — 320px (very small phones)
+   ============================================= */
+@media (max-width: 320px) {
+    .container {
+        padding: 0 12px;
+    }
+
+    .map-title {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+
+    .map-pin {
+        width: 22px;
     }
 
     .nav-link {
-        font-size: 10px;
+        font-size: 12px;
     }
 }

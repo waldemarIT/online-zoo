@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Zoo - Register</title>
+  <link rel="icon" href="../../assets/icons/Logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-container">
+      <a href="../landing/index.html" class="logo">
+        <img src="../../assets/icons/Logo.svg" alt="Online Zoo Logo">
+      </a>
+      <div class="auth-header-actions">
+        <a href="signin.html" class="auth-nav-link">Sign In</a>
+        <button class="theme-toggle-btn" aria-label="Toggle dark/light theme" title="Switch theme">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-main">
+    <div class="auth-card">
+      <h1 class="auth-title">Create Account</h1>
+      <p class="auth-subtitle">Join Online Zoo and start watching animals live!</p>
+
+      <div class="auth-error" id="authError"></div>
+
+      <form class="auth-form" id="registerForm" novalidate>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" autocomplete="name">
+          <span class="field-error" id="nameError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="login">Login</label>
+          <input type="text" id="login" name="login" placeholder="Username (letters only, e.g. vladsk)" autocomplete="username">
+          <span class="field-error" id="loginError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email">
+          <span class="field-error" id="emailError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="At least 6 characters, 1 special char" autocomplete="new-password">
+          <span class="field-error" id="passwordError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repeat your password" autocomplete="new-password">
+          <span class="field-error" id="confirmPasswordError"></span>
+        </div>
+
+        <button type="submit" class="auth-btn" id="submitBtn">CREATE ACCOUNT</button>
+
+        <p class="auth-link-row">
+          Already have an account? <a href="signin.html">Sign In</a>
+        </p>
+      </form>
+    </div>
+  </main>
+
+  <script type="module" src="./register.ts"></script>
+</body>
+</html>
